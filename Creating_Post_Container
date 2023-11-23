@@ -1,0 +1,97 @@
+// problem faced:- If you will Name footer and Container with your diffretn anme it will give error on the compiler so try to use standad naming convention.
+
+
+//Complete this JS file to render the post1 on the screen with all the specified tags.
+let post1 ={
+    id: 1, 
+    author: 'John',
+    content: 'My first Post!', 
+    likes: 10, 
+    comments: ['Great post!', 'Nice photo!'], 
+    image: 'https://files.codingninjas.in/image2-28694.jpg' };
+
+
+
+function renderposts(){
+
+
+const divposts = document.getElementById('posts');
+divposts.innerHTML = "";    
+
+
+const newdivpost = document.createElement('div');
+newdivpost.classList.add('post');
+
+//  divposts.appendChild(newdivpost);
+
+// statement 1
+const newH3 = document.createElement('h3');
+newH3.textContent = post1.author;
+
+// statement 2 adding image:-
+const newImg = document.createElement('img');
+// newImg.setAttribute('src', image);
+newImg.src = post1.image;
+newImg.alt = 'Post Image';
+// statement 3 adding p tag.
+const newP =  document.createElement('p');
+newP.textContent = post1.content;
+// statement 4 adding textContent:-
+
+const newButton = document.createElement('button');
+newButton.textContent = 'Like';
+// statement 5:-
+
+const newInput = document.createElement('input');
+newInput.type = 'text';
+newInput.placeholder = 'Write a Comment...';
+// statement 6:-
+const newButton2 = document.createElement('button');
+newButton2.textContent = 'Comment';
+// statement 7:-
+const postFooter = document.createElement('div');
+postFooter.classList.add('post-footer');
+postFooter.textContent = `Likes: ${post1.likes}   Comments: ${post1.comments.length}`;
+
+// statement 8 & statement 9:-
+const commentsContainer = document.createElement('div'); 
+commentsContainer.classList.add('comments-container');
+commentsContainer.style.display = 'none';
+
+post1.comments.forEach((comment) => {
+   const commentElement = document.createElement('p');
+   commentElement.textContent = comment;
+   commentsContainer.appendChild(commentElement);
+});
+
+ 
+newdivpost.appendChild(newH3);
+newdivpost.appendChild(newImg);
+newdivpost.appendChild(newP);
+newdivpost.appendChild(newButton);
+newdivpost.appendChild(newInput);
+newdivpost.appendChild(newButton2);
+newdivpost.appendChild(postFooter);
+newdivpost.appendChild(commentsContainer);
+
+
+
+// statement 10:-
+postFooter.addEventListener('click', () => {
+    if (commentsContainer.style.display === 'none') {
+      commentsContainer.style.display = 'block';
+    } else {
+      commentsContainer.style.display = 'none';
+    }
+  });
+
+  divposts.appendChild(newdivpost);
+
+}
+
+
+renderposts();
+
+
+
+
